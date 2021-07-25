@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "conf": "^10.0.1",
+    "it-length-prefixed": "^5.0.3",
+    "it-pipe": "^1.1.0",
+    "jest": "^27.0.6",
+    "libp2p": "^0.32.1",
+    "libp2p-crypto": "^0.19.6",
+    "libp2p-mplex": "^0.10.4",
+    "libp2p-noise": "^4.0.0",
+    "libp2p-tcp": "^0.17.1",
+    "multiaddr": "^10.0.0",
+    "peer-id": "^0.15.1"
+  },
+  "description": "Tunneler Electron/Node.js library, created to tunnel tcp over libp2p",
+  "devDependencies": {
+    "@types/configstore": "^5.0.1",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unicorn": "^34.0.1",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5"
+  },
+  "main": "dist/index.js",
+  "name": "@tunneler/lib",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint",
+    "test": "jest"
+  },
+  "types": "dist/index.d.ts",
+  "version": "0.0.0"
+}

@@ -1,0 +1,23 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "unicorn"
+    ],
+    "extends": [
+        "standard",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "space-before-function-paren": "off",
+        "complexity": [
+            "error",
+            {
+                "max": 8
+            }
+        ]
+    }
+}
