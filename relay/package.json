@@ -1,6 +1,6 @@
 {
   "name": "@tunl/relay",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Tunneler relay server for libp2p",
   "main": "run.bash",
   "repository": "https://github.com/0x77dev/tunneler.git",
