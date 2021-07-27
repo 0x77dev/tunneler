@@ -9,7 +9,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
-    "@tunl/lib": "^0.1.0",
+    "@tunl/lib": "^0.1.1",
     "tslib": "^1"
   },
   "description": "Tunneler CLI",
@@ -51,5 +51,5 @@
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

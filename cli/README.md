@@ -19,7 +19,7 @@ $ npm install -g @tunl/cli
 $ tunneler COMMAND
 running command...
 $ tunneler (-v|--version|version)
-@tunl/cli/0.1.0 darwin-x64 node-v16.4.2
+@tunl/cli/0.1.1 darwin-x64 node-v16.4.2
 $ tunneler --help [COMMAND]
 USAGE
   $ tunneler COMMAND
@@ -29,7 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`](#tunneler-consume-remoteport-localport-connparam)
-* [`tunneler handle [PORT]`](#tunneler-handle-port)
+* [`tunneler expose [PORT]`](#tunneler-expose-port)
 * [`tunneler help [COMMAND]`](#tunneler-help-command)
 
 ## `tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`
@@ -44,21 +44,21 @@ EXAMPLE
   $ tunneler consume 8080 8081 base64_connection_param==
 ```
 
-_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.0/src/commands/consume.ts)_
+_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.1/src/commands/consume.ts)_
 
-## `tunneler handle [PORT]`
+## `tunneler expose [PORT]`
 
 expose local port
 
 ```
 USAGE
-  $ tunneler handle [PORT]
+  $ tunneler expose [PORT]
 
 EXAMPLE
-  $ tunneler handle 8080
+  $ tunneler expose 8080
 ```
 
-_See code: [src/commands/handle.ts](https://github.com/0x77dev/tunneler/blob/v0.1.0/src/commands/handle.ts)_
+_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.1.1/src/commands/expose.ts)_
 
 ## `tunneler help [COMMAND]`
 
