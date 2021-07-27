@@ -25,10 +25,15 @@ export default class Consume extends Command {
       console.log(`discovered peer: ${peerId.toB58String()}`)
     })
 
+    p2p.connectionManager.on('peer:connect', (connection) => {
+      console.log(`peer connected: ${connection.remotePeer.toB58String()}`)
+    })
+
     p2p.connectionManager.on('peer:disconnect', (connection) => {
       console.log(`peer disconnected: ${connection.remotePeer.toB58String()}`)
     })
 
     protocol.listen(peerId.toB58String(), remotePort, localPort)
+    console.log('ready to accept connections on', `:${localPort}`)
   }
 }

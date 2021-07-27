@@ -20,8 +20,10 @@ export class Protocol {
   }
 
   public async handle(port: number): Promise<void> {
-    this.p2p.handle(`/tunneler/0.0.0/${port}`, ({ stream }) => {
+    this.p2p.handle(`/tunneler/0.0.0/${port}`, ({ stream, connection: { remotePeer } }) => {
       const connection = createConnection({ host: 'localhost', port })
+
+      console.log('handling peer:', remotePeer.toB58String(), 'to port', port)
 
       pipe(
         connection,

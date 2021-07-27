@@ -19,7 +19,7 @@ Free, open-source, [libp2p](https://libp2p.io) based TCP tunneling toolkit with 
 ### Forwarding local port
 
 ```console
-$ tunl handle {{localPort}}
+$ tunl expose {{localPort}}
 Connection Param:
  ey...==
 ```
