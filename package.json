@@ -4,6 +4,10 @@
   "private": true,
   "author": "Mikhail Marynenko <0x77dev@protonmail.com>",
   "license": "MIT",
+  "scripts": {
+    "publish": "lerna publish",
+    "diff": "lerna diff"
+  },
   "workspaces": [
     "./*"
   ],
