@@ -4,6 +4,7 @@ import PeerId, { JSONPeerId } from 'peer-id'
 import Conf from 'conf'
 import TCP from 'libp2p-tcp'
 import { NOISE } from 'libp2p-noise'
+import Bootstrap from 'libp2p-bootstrap'
 
 const store = new Conf()
 
@@ -29,7 +30,23 @@ export class P2P extends Libp2p {
         transport: [TCP],
         connEncryption: [NOISE],
         // FIXME: Do not use require
-        streamMuxer: [require('libp2p-mplex')]
+        streamMuxer: [require('libp2p-mplex')],
+        pubsub: require('libp2p-gossipsub'),
+        peerDiscovery: [Bootstrap, require('libp2p-pubsub-peer-discovery')]
+      },
+      config: {
+        peerDiscovery: {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          [require('libp2p-pubsub-peer-discovery').tag]: {
+            interval: 1000,
+            enabled: true
+          },
+          [Bootstrap.tag]: {
+            interval: 60e3,
+            enabled: true,
+            list: ['/dns4/tunl-relay-us.herokuapp.com/tcp/443/wss/p2p/12D3KooWFynALLMhxYbLaxuNELJgWkJ8UuQMjGGdeP321u8SvFtE', '/dns4/tunl-relay-eu.herokuapp.com/tcp/443/wss/p2p/12D3KooWFynALLMhxYbLaxuNELJgWkJ8UuQMjGGdeP321u8SvFtE']
+          }
+        }
       }
     })
   }

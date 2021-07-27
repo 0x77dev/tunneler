@@ -1,0 +1,10 @@
+{
+  "name": "@tunl/relay",
+  "version": "0.0.0",
+  "description": "Tunneler relay server for libp2p",
+  "main": "run.bash",
+  "repository": "https://github.com/0x77dev/tunneler.git",
+  "author": "Mikhail Marynenko <0x77dev@protonmail.com>",
+  "license": "MIT",
+  "private": true
+}

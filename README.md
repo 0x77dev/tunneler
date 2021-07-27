@@ -4,5 +4,5 @@ TCP tunneling toolkit based on [libp2p](https://libp2p.io), written in Node.js a
 
 ### Packages
 
-- [@tunneler/cli](./cli)
-- [@tunneler/lib](./lib/docs)
+- [@tunl/cli](./cli)
+- [@tunl/lib](./lib/docs)

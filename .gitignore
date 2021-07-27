@@ -3,3 +3,5 @@ node_modules/
 dist/
 docs/
 !docs/*.png
+*.log
+id.json

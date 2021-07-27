@@ -1,12 +1,12 @@
-@tunneler/cli
+@tunl/cli
 =============
 
 Tunneler CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/@tunneler/cli.svg)](https://npmjs.org/package/@tunneler/cli)
-[![Downloads/week](https://img.shields.io/npm/dw/@tunneler/cli.svg)](https://npmjs.org/package/@tunneler/cli)
-[![License](https://img.shields.io/npm/l/@tunneler/cli.svg)](https://github.com/0x77dev/tunneler/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/@tunl/cli.svg)](https://npmjs.org/package/@tunl/cli)
+[![Downloads/week](https://img.shields.io/npm/dw/@tunl/cli.svg)](https://npmjs.org/package/@tunl/cli)
+[![License](https://img.shields.io/npm/l/@tunl/cli.svg)](https://github.com/0x77dev/tunneler/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -15,11 +15,11 @@ Tunneler CLI
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @tunneler/cli
+$ npm install -g @tunl/cli
 $ tunneler COMMAND
 running command...
 $ tunneler (-v|--version|version)
-@tunneler/cli/0.0.0 darwin-x64 node-v16.4.2
+@tunl/cli/0.0.0-build1 darwin-x64 node-v16.4.2
 $ tunneler --help [COMMAND]
 USAGE
   $ tunneler COMMAND
@@ -28,28 +28,37 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`tunneler hello [FILE]`](#tunneler-hello-file)
+* [`tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`](#tunneler-consume-remoteport-localport-connparam)
+* [`tunneler handle [PORT]`](#tunneler-handle-port)
 * [`tunneler help [COMMAND]`](#tunneler-help-command)
 
-## `tunneler hello [FILE]`
+## `tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`
 
-describe the command here
+tunnel remote port
 
 ```
 USAGE
-  $ tunneler hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  $ tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]
 
 EXAMPLE
-  $ tunneler hello
-  hello world from ./src/hello.ts!
+  $ tunneler consume 8080 8081 base64_connection_param==
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/0x77dev/tunneler/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.0.0-build1/src/commands/consume.ts)_
+
+## `tunneler handle [PORT]`
+
+expose local port
+
+```
+USAGE
+  $ tunneler handle [PORT]
+
+EXAMPLE
+  $ tunneler handle 8080
+```
+
+_See code: [src/commands/handle.ts](https://github.com/0x77dev/tunneler/blob/v0.0.0-build1/src/commands/handle.ts)_
 
 ## `tunneler help [COMMAND]`
 

@@ -1,5 +1,5 @@
 import { Command } from '@oclif/command'
-import { P2P, Protocol } from "@tunneler/lib"
+import { P2P, Protocol } from "@tunl/lib"
 
 export default class Consume extends Command {
   static description = 'tunnel remote port'
@@ -20,6 +20,14 @@ export default class Consume extends Command {
     const { peerId, multiaddrs } = p2p.getHostData(connParam)
 
     p2p.addHost(peerId, multiaddrs)
+
+    p2p.on('peer:discovery', (peerId) => {
+      console.log(`discovered peer: ${peerId.toB58String()}`)
+    })
+
+    p2p.connectionManager.on('peer:disconnect', (connection) => {
+      console.log(`peer disconnected: ${connection.remotePeer.toB58String()}`)
+    })
 
     protocol.listen(peerId.toB58String(), remotePort, localPort)
   }

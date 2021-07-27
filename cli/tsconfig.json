@@ -5,8 +5,10 @@
     "module": "commonjs",
     "outDir": "lib",
     "rootDir": "src",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "strict": true,
-    "target": "es2017"
+    "target": "esnext"
   },
   "include": [
     "src/**/*"

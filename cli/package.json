@@ -1,9 +1,7 @@
 {
-  "name": "@tunneler/cli",
-  "description": "Tunneler CLI",
-  "version": "0.0.0",
   "author": "Mikhail Marynenko <0x77dev@protonmail.com>",
   "bin": {
+    "tunl": "./bin/run",
     "tunneler": "./bin/run"
   },
   "bugs": "https://github.com/0x77dev/tunneler/issues",
@@ -11,8 +9,10 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@tunl/lib": "^0.0.0-build1",
     "tslib": "^1"
   },
+  "description": "Tunneler CLI",
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@types/node": "^10",
@@ -35,9 +35,10 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
+  "name": "@tunl/cli",
   "oclif": {
-    "commands": "./lib/commands",
     "bin": "tunneler",
+    "commands": "./lib/commands",
     "plugins": [
       "@oclif/plugin-help"
     ]
@@ -49,5 +50,6 @@
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "version": "0.0.0-build1"
 }
