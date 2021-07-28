@@ -19,7 +19,7 @@ $ npm install -g @tunl/cli
 $ tunneler COMMAND
 running command...
 $ tunneler (-v|--version|version)
-@tunl/cli/0.1.2 darwin-x64 node-v16.4.2
+@tunl/cli/0.1.3-security.0 darwin-x64 node-v16.4.2
 $ tunneler --help [COMMAND]
 USAGE
   $ tunneler COMMAND
@@ -69,7 +69,7 @@ EXAMPLE
   $ tunneler consume 8080 8081 base64_connection_param==
 ```
 
-_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.2/src/commands/consume.ts)_
+_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.3-security.0/src/commands/consume.ts)_
 
 ## `tunneler expose [PORT]`
 
@@ -83,7 +83,7 @@ EXAMPLE
   $ tunneler expose 8080
 ```
 
-_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.1.2/src/commands/expose.ts)_
+_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.1.3-security.0/src/commands/expose.ts)_
 
 ## `tunneler help [COMMAND]`
 
