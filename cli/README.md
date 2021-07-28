@@ -19,7 +19,7 @@ $ npm install -g @tunl/cli
 $ tunneler COMMAND
 running command...
 $ tunneler (-v|--version|version)
-@tunl/cli/0.1.1 darwin-x64 node-v16.4.2
+@tunl/cli/0.1.2 darwin-x64 node-v16.4.2
 $ tunneler --help [COMMAND]
 USAGE
   $ tunneler COMMAND
@@ -28,9 +28,34 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`tunneler autocomplete [SHELL]`](#tunneler-autocomplete-shell)
 * [`tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`](#tunneler-consume-remoteport-localport-connparam)
 * [`tunneler expose [PORT]`](#tunneler-expose-port)
 * [`tunneler help [COMMAND]`](#tunneler-help-command)
+* [`tunneler update [CHANNEL]`](#tunneler-update-channel)
+
+## `tunneler autocomplete [SHELL]`
+
+display autocomplete installation instructions
+
+```
+USAGE
+  $ tunneler autocomplete [SHELL]
+
+ARGUMENTS
+  SHELL  shell type
+
+OPTIONS
+  -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+EXAMPLES
+  $ tunneler autocomplete
+  $ tunneler autocomplete bash
+  $ tunneler autocomplete zsh
+  $ tunneler autocomplete --refresh-cache
+```
+
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.3.0/src/commands/autocomplete/index.ts)_
 
 ## `tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`
 
@@ -44,7 +69,7 @@ EXAMPLE
   $ tunneler consume 8080 8081 base64_connection_param==
 ```
 
-_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.1/src/commands/consume.ts)_
+_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.2/src/commands/consume.ts)_
 
 ## `tunneler expose [PORT]`
 
@@ -58,7 +83,7 @@ EXAMPLE
   $ tunneler expose 8080
 ```
 
-_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.1.1/src/commands/expose.ts)_
+_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.1.2/src/commands/expose.ts)_
 
 ## `tunneler help [COMMAND]`
 
@@ -76,4 +101,15 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `tunneler update [CHANNEL]`
+
+update the tunneler CLI
+
+```
+USAGE
+  $ tunneler update [CHANNEL]
+```
+
+_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v1.3.10/src/commands/update.ts)_
 <!-- commandsstop -->
