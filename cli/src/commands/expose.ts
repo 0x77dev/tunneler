@@ -1,5 +1,6 @@
 import { Command } from '@oclif/command'
 import { P2P, Protocol } from "@tunl/lib"
+import cli from 'cli-ux'
 
 export default class Expose extends Command {
   static description = 'expose local port'
@@ -18,26 +19,26 @@ export default class Expose extends Command {
     await protocol.handlePorts()
 
     await p2p.init()
-    this.log('ready, port', args.port, 'have been exposed \nshare fresh connection param to open a tunnel on another machine')
+    cli.info('ready, port', args.port, 'have been exposed \nshare fresh connection param to open a tunnel on another machine')
 
     p2p.on('peer:discovery', (peerId) => {
-      console.log(`discovered peer: ${peerId.toB58String()}`)
+      cli.info(`discovered peer: ${peerId.toB58String()}`)
     })
 
     p2p.connectionManager.on('peer:connect', (connection) => {
-      console.log(`peer connected: ${connection.remotePeer.toB58String()}`)
+      cli.info(`peer connected: ${connection.remotePeer.toB58String()}`)
     })
 
     p2p.connectionManager.on('peer:disconnect', (connection) => {
-      console.log(`peer disconnected: ${connection.remotePeer.toB58String()}`)
+      cli.warn(`peer disconnected: ${connection.remotePeer.toB58String()}`)
     })
 
     p2p.natManager.start()
 
-    this.log("connection param:\n\t", p2p.getConnectionData())
+    cli.info("connection param:\n\t", p2p.getConnectionData())
 
     p2p.addressManager.on('change:addresses', () => {
-      this.log("\n new connection param:\n\t", p2p.getConnectionData())
+      cli.info("\n new connection param:\n\t", p2p.getConnectionData())
     })
   }
 }

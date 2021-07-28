@@ -1,5 +1,6 @@
 import { Command } from '@oclif/command'
 import { P2P, Protocol } from "@tunl/lib"
+import cli from 'cli-ux'
 
 export default class Consume extends Command {
   static description = 'tunnel remote port'
@@ -11,7 +12,7 @@ export default class Consume extends Command {
   static args = [{ name: 'remotePort' }, { name: 'localPort' }, { name: 'connParam' }]
 
   async run() {
-    const { args: { localPort, remotePort, connParam } } = this.parse(Consume)
+    let { args: { localPort, remotePort, connParam } } = this.parse(Consume)
     const p2p = await P2P.create()
 
     const protocol = new Protocol(p2p)
@@ -19,21 +20,40 @@ export default class Consume extends Command {
 
     const { peerId, multiaddrs } = p2p.getHostData(connParam)
 
+    if (!remotePort) {
+      remotePort = await cli.prompt('remotePort:')
+    }
+
+    if (!localPort) {
+      localPort = await cli.prompt('localPort:')
+    }
+
+    if (!connParam) {
+      connParam = await cli.prompt('connParam:', { type: 'mask' })
+    }
+
     p2p.addHost(peerId, multiaddrs)
 
     p2p.on('peer:discovery', (peerId) => {
-      console.log(`discovered peer: ${peerId.toB58String()}`)
+      cli.info(`discovered peer: ${peerId.toB58String()}`)
     })
 
     p2p.connectionManager.on('peer:connect', (connection) => {
-      console.log(`peer connected: ${connection.remotePeer.toB58String()}`)
+      cli.info(`peer connected: ${connection.remotePeer.toB58String()}`)
     })
 
     p2p.connectionManager.on('peer:disconnect', (connection) => {
-      console.log(`peer disconnected: ${connection.remotePeer.toB58String()}`)
+      const b58 = connection.remotePeer.toB58String()
+
+      cli.info(`peer disconnected: ${b58}`)
+
+      if (peerId.toB58String() === b58) {
+        cli.warn('peer that have exposed port has been disconnected, exiting')
+        process.exit()
+      }
     })
 
-    protocol.listen(peerId.toB58String(), remotePort, localPort)
-    console.log('ready to accept connections on', `:${localPort}`)
+    await protocol.listen(peerId.toB58String(), remotePort, localPort)
+    cli.info('ready to accept connections on', `:${localPort}`)
   }
 }
