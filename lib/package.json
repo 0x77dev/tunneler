@@ -41,6 +41,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint",
+    "prepack": "yarn build",
     "test": "jest"
   },
   "types": "dist/index.d.ts",
