@@ -5,9 +5,9 @@ import Conf from 'conf'
 import TCP from 'libp2p-tcp'
 import { NOISE } from 'libp2p-noise'
 import Bootstrap from 'libp2p-bootstrap'
+import dht from 'libp2p-kad-dht'
 
 const store = new Conf()
-
 export class P2P extends Libp2p {
   public static async create(): Promise<P2P> {
     let peerIdJson = store.get('peerId') as JSONPeerId | null
@@ -32,10 +32,20 @@ export class P2P extends Libp2p {
         // FIXME: Do not use require
         streamMuxer: [require('libp2p-mplex')],
         pubsub: require('libp2p-gossipsub'),
-        peerDiscovery: [Bootstrap, require('libp2p-pubsub-peer-discovery')]
+        peerDiscovery: [Bootstrap, require('libp2p-pubsub-peer-discovery')],
+        dht
       },
       config: {
         peerDiscovery: {
+          autoDial: true,
+          mdns: {
+            interval: 1000,
+            enabled: true
+          },
+          webrtcStar: {
+            interval: 1000,
+            enabled: true
+          },
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           [require('libp2p-pubsub-peer-discovery').tag]: {
             interval: 1000,
@@ -45,6 +55,22 @@ export class P2P extends Libp2p {
             interval: 60e3,
             enabled: true,
             list: ['/dns4/tunl-relay-us.herokuapp.com/tcp/443/wss/p2p/12D3KooWFynALLMhxYbLaxuNELJgWkJ8UuQMjGGdeP321u8SvFtE', '/dns4/tunl-relay-eu.herokuapp.com/tcp/443/wss/p2p/12D3KooWFynALLMhxYbLaxuNELJgWkJ8UuQMjGGdeP321u8SvFtE']
+          }
+        },
+        relay: {
+          enabled: true,
+          hop: {
+            enabled: true,
+            active: true
+          }
+        },
+        dht: {
+          kBucketSize: 20,
+          enabled: true,
+          randomWalk: {
+            enabled: true,
+            interval: 300e3,
+            timeout: 10e3
           }
         }
       }
