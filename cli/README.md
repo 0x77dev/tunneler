@@ -19,7 +19,7 @@ $ npm install -g @tunl/cli
 $ tunneler COMMAND
 running command...
 $ tunneler (-v|--version|version)
-@tunl/cli/0.1.3-security.0 darwin-x64 node-v16.4.2
+@tunl/cli/0.2.0 darwin-x64 node-v16.13.1
 $ tunneler --help [COMMAND]
 USAGE
   $ tunneler COMMAND
@@ -29,7 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`tunneler autocomplete [SHELL]`](#tunneler-autocomplete-shell)
-* [`tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`](#tunneler-consume-remoteport-localport-connparam)
+* [`tunneler consume [REMOTEPORT] [LOCALPORT] [B58] [MULTIADDR]`](#tunneler-consume-remoteport-localport-b58-multiaddr)
 * [`tunneler expose [PORT]`](#tunneler-expose-port)
 * [`tunneler help [COMMAND]`](#tunneler-help-command)
 * [`tunneler update [CHANNEL]`](#tunneler-update-channel)
@@ -57,19 +57,19 @@ EXAMPLES
 
 _See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.3.0/src/commands/autocomplete/index.ts)_
 
-## `tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]`
+## `tunneler consume [REMOTEPORT] [LOCALPORT] [B58] [MULTIADDR]`
 
 tunnel remote port
 
 ```
 USAGE
-  $ tunneler consume [REMOTEPORT] [LOCALPORT] [CONNPARAM]
+  $ tunneler consume [REMOTEPORT] [LOCALPORT] [B58] [MULTIADDR]
 
 EXAMPLE
   $ tunneler consume 8080 8081 base64_connection_param==
 ```
 
-_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.1.3-security.0/src/commands/consume.ts)_
+_See code: [src/commands/consume.ts](https://github.com/0x77dev/tunneler/blob/v0.2.0/src/commands/consume.ts)_
 
 ## `tunneler expose [PORT]`
 
@@ -83,7 +83,7 @@ EXAMPLE
   $ tunneler expose 8080
 ```
 
-_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.1.3-security.0/src/commands/expose.ts)_
+_See code: [src/commands/expose.ts](https://github.com/0x77dev/tunneler/blob/v0.2.0/src/commands/expose.ts)_
 
 ## `tunneler help [COMMAND]`
 
