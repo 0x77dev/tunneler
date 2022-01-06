@@ -9,16 +9,24 @@ export default class Consume extends Command {
     `$ tunneler consume 8080 8081 base64_connection_param==`,
   ]
 
-  static args = [{ name: 'remotePort' }, { name: 'localPort' }, { name: 'connParam' }]
+  static args = [{ name: 'remotePort' }, { name: 'localPort' }, { name: 'b58' }, { name: 'multiaddr' }]
 
   async run() {
-    let { args: { localPort, remotePort, connParam } } = this.parse(Consume)
+    let { args: { localPort, remotePort, b58, multiaddr: multiaddrStr } } = this.parse(Consume)
     const p2p = await P2P.create()
 
     const protocol = new Protocol(p2p)
     await p2p.init()
 
-    const { peerId, multiaddrs } = p2p.getHostData(connParam)
+    if (!b58) {
+      b58 = await cli.prompt('b58:')
+    }
+
+    if (!multiaddrStr) {
+      multiaddrStr = await cli.prompt('multiaddrStr:')
+    }
+
+    const { peerId, multiaddr } = p2p.getHostData(b58, multiaddrStr)
 
     if (!remotePort) {
       remotePort = await cli.prompt('remotePort:')
@@ -28,11 +36,7 @@ export default class Consume extends Command {
       localPort = await cli.prompt('localPort:')
     }
 
-    if (!connParam) {
-      connParam = await cli.prompt('connParam:', { type: 'mask' })
-    }
-
-    p2p.addHost(peerId, multiaddrs)
+    p2p.addHost(peerId, [multiaddr])
 
     p2p.on('peer:discovery', (peerId) => {
       cli.info(`discovered peer: ${peerId.toB58String()}`)

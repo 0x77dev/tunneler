@@ -35,10 +35,15 @@ export default class Expose extends Command {
 
     p2p.natManager.start()
 
-    cli.info("connection param:\n\t", p2p.getConnectionData())
+    const connData = p2p.getConnectionData()
+
+    cli.info("B58:\n\t", connData.b58)
+    cli.info("multiaddrs:\n\t", connData.multiaddrs.join('\n'))
 
     p2p.addressManager.on('change:addresses', () => {
-      cli.info("\n new connection param:\n\t", p2p.getConnectionData())
+      cli.info("\n new connection param:\n\t")
+      cli.info("B58:\n\t", connData.b58)
+      cli.info("multiaddrs:\n\t", connData.multiaddrs.join('\n\t'))
     })
   }
 }

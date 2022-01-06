@@ -9,9 +9,9 @@ const run = async () => {
     console.log('connected to: ', connection.remotePeer.toB58String())
   })
 
-  const { peerId, multiaddrs } = p2p.getHostData(process.argv[2])
+  const { peerId, multiaddr } = p2p.getHostData(process.argv[2], process.argv[3])
 
-  p2p.addHost(peerId, multiaddrs)
+  p2p.addHost(peerId, [multiaddr])
 
   protocol.listen(peerId.toB58String(), 8080, 65531)
 }

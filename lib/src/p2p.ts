@@ -24,7 +24,11 @@ export class P2P extends Libp2p {
     return new this({
       peerId,
       addresses: {
-        listen: ['/ip4/0.0.0.0/tcp/0']
+        listen: [
+          '/ip4/0.0.0.0/tcp/0',
+          '/dns4/wrtc-star1.par.dwebops.pub/tcp/443/wss/p2p-webrtc-star',
+          '/dns4/wrtc-star2.sjc.dwebops.pub/tcp/443/wss/p2p-webrtc-star'
+        ]
       },
       modules: {
         transport: [TCP],
@@ -36,6 +40,10 @@ export class P2P extends Libp2p {
         dht
       },
       config: {
+        pubsub: {
+          enabled: true,
+          emitSelf: false
+        },
         peerDiscovery: {
           autoDial: true,
           mdns: {
@@ -43,7 +51,7 @@ export class P2P extends Libp2p {
             enabled: true
           },
           webrtcStar: {
-            interval: 1000,
+            interval: 10,
             enabled: true
           },
           // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -98,19 +106,17 @@ export class P2P extends Libp2p {
     return multiaddrs.map((ma) => ma.toString() + '/p2p/' + b58)
   }
 
-  public getConnectionData(): string {
+  public getConnectionData(): { b58: string; multiaddrs: string[] } {
     const b58 = this.peerId.toB58String()
     const multiaddrs = this.multiaddrsToStringArray(b58, this.multiaddrs)
 
-    return Buffer.from(JSON.stringify({ b58, multiaddrs })).toString('base64')
+    return { b58, multiaddrs }
   }
 
-  public getHostData(connData: string): { peerId: PeerId, multiaddrs: Multiaddr[] } {
-    const { b58, multiaddrs } = JSON.parse(Buffer.from(connData, 'base64').toString())
-
+  public getHostData(b58: string, multiaddr: string): { peerId: PeerId, multiaddr: Multiaddr } {
     return {
       peerId: PeerId.createFromB58String(b58),
-      multiaddrs: multiaddrs.map((str: string) => new Multiaddr(str))
+      multiaddr: new Multiaddr(multiaddr)
     }
   }
 
